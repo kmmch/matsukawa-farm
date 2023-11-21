@@ -391,7 +391,7 @@ section.bg-on {
   #About .about__img--wrapper {
     position: absolute;
     top: 50px;
-    right: 80px;
+    right: 400px;
   }
 }
 #About .about__img {
@@ -399,7 +399,6 @@ section.bg-on {
   width: 100%;
 }
 #About .about__img > img {
-  width: 80%;
   border-radius: 30px;
 }
 #About .about__img.upper {
@@ -410,12 +409,22 @@ section.bg-on {
     margin-bottom: 70px;
   }
 }
-#About .about__img.lower > img {
+#About .about__img.upper img {
+  width: 75%;
+}
+@media screen and (min-width: 769px) {
+  #About .about__img.upper img {
+    max-width: 1000px;
+    width: 70%;
+  }
+}
+#About .about__img.lower img {
   width: 50%;
 }
 @media screen and (min-width: 769px) {
-  #About .about__img.lower > img {
-    width: 30%;
+  #About .about__img.lower img {
+    max-width: 600px;
+    width: 40%;
   }
 }
 

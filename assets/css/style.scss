@@ -442,7 +442,7 @@ section {
             @include pc {
                 position: absolute;
                 top: 50px;
-                right: 80px;
+                right: 400px;
             }
         }
 
@@ -451,7 +451,6 @@ section {
             width: 100%;
     
             & > img {
-                width: 80%;
                 border-radius: 30px;
             }
     
@@ -460,13 +459,22 @@ section {
                 @include pc {
                     margin-bottom: 70px;
                 }
+
+                & img {
+                    width: 75%;
+                    @include pc {
+                        max-width: 1000px;
+                        width: 70%;
+                    }
+                }
             }
     
             &.lower {
-                & > img {
+                & img {
                     width: 50%;
                     @include pc {
-                        width: 30%;
+                        max-width: 600px;
+                        width: 40%;
                     }
                 }
             }
