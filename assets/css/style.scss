@@ -425,7 +425,7 @@ section {
         &__txt {
             color: #666;
             font-weight: $fontWeightMain;
-            max-width: 560px;
+            max-width: 570px;
             background: rgba(255, 255, 255, 0.90);
             line-height: 250%; 
             padding: 15px;
@@ -435,6 +435,7 @@ section {
             @include pc{
                 position: relative;
                 z-index: 99;
+                max-width: 720px;
             }
         }
     
