@@ -450,6 +450,7 @@ section.bg-on {
   flex-direction: column;
 }
 .product__img > img {
+  max-height: 186px;
   width: 100%;
 }
 .product__ttl {

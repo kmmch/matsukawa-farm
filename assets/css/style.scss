@@ -512,6 +512,7 @@ section {
 
     &__img {
         & > img {
+            max-height: 186px;
             width: 100%;
         }
     }
