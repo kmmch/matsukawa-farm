@@ -1,0 +1,16 @@
+@mixin rem($size) {
+    font-size: $size + px; /*IE9以前に対応する*/
+    font-size: calc($size / 16) + rem;
+}
+
+@mixin pc {
+    @media screen and (min-width: 769px) {
+      @content;
+    }
+}
+
+@mixin tab {
+  @media screen and (min-width: 1030px) {
+    @content;
+  }
+}

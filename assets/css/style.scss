@@ -1,0 +1,1118 @@
+@use "modules/variables" as *;
+@use "modules/mixin" as *;
+
+// --------------------------------------------
+// 共通
+// --------------------------------------------
+* {
+    font-family: "Noto Sans JP", sans-serif;
+    color: $colorText;
+}
+
+a {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+li {
+    list-style: none;
+}
+
+.wrapper {
+    max-width: $wrapperMaxWidth;
+    width: 90%;
+    margin: 0 auto;
+
+    @include pc {
+        max-width: $wrapperMaxWidthPc;
+    }
+}
+
+.noScroll {
+    overflow: hidden;
+}
+
+.is-pc {
+    display: none;
+    @include pc {
+        display: block;
+    }
+}
+
+.is-sp {
+    @include pc {
+        display: none;
+    }
+}
+
+.dispOver1031 {
+    display: none;
+    @media screen and (min-width: 1031px) {
+        display: block;
+    }
+}
+.dispUnder1031 {
+    display: block;
+    @media screen and (min-width: 1031px) {
+        display: none;
+    }
+}
+
+.mainTtl {
+    @include rem(36);
+    font-weight: $fontWeightMain;
+
+    & h1 {
+        letter-spacing: 5px;
+        font-family: 'Mochiy Pop One', sans-serif;
+        color: #5d7d47;
+    }
+    
+    &:hover {
+        text-decoration: none;
+        opacity: 0.7;
+        transition: all 0.3s;
+    }
+
+    &__wrapper {
+        text-align: center;
+    }
+}
+
+
+// --------------------------------------------
+// ファーストビジュアル
+// --------------------------------------------
+.fv {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-image: url(../images/27386886_m.jpg);
+    height: 100vh;
+    max-height: 667px;
+
+    @include pc {
+        max-height: 854px;
+    }
+
+    &__wrapper {
+        writing-mode: vertical-rl;
+        width: 50%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+    
+    &Txt__container {
+        margin-top: 15%;
+        @include pc {
+            margin-top: 20%;
+        }
+        height: 100%;
+    }
+
+    &__txt {
+        display: inline-block;
+        font-weight: $fontWeightMain;
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+        margin-top: 0;
+        margin-bottom: 6px;
+        padding: 10px 15px 0;
+        @include rem(32);
+        max-width: 432px;
+        letter-spacing: 0.5em;
+        color: $colorWhite;
+            
+        @include pc {
+            // @include rem(32);
+        }
+
+        &:nth-child(3) {
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+    }
+}
+
+
+// --------------------------------------------
+// ヘッダー
+// --------------------------------------------
+.header {
+    position: relative;
+    background-color: $colorBackground;
+
+    &__upper {
+        background-color: $colorBackground;
+        position: absolute;
+        width: 154px;
+        height: 154px;
+        border-radius: 50% 50% 0 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        @include pc {
+            transform: translate(-35%, -50%);
+        }
+
+        & img {
+            width: 100%;
+        }
+    }
+
+    &__lower {
+        z-index: 1;
+        position: relative;
+    }
+}
+.gnav {
+    @include pc {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    padding: 51px 0 45px 0;
+    
+    &__list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:nth-child(2) {
+            margin: 0 39px;
+        }
+
+        &--item {
+            margin: 0 20px;
+            font-weight: $fontWeightMain;
+
+            & .mainTtl {
+                margin-top: 30px;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+
+#hamburgerBtn{
+	position: fixed;
+    z-index: 99999;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
+    width: 48px;
+    height:48px;
+    background: $colorHamburgerBackground;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    border-radius: 50px;
+    transition: all 0.6s;
+
+    & span{
+        display: inline-block;
+        transition: all .4s;
+        position: absolute;
+        left: 16px;
+        height: 2px;
+        border-radius: 2px;
+        background-color: $colorWhite;
+        width: 18px;
+
+        &:nth-of-type(1) {
+            top: calc(50% - 5px);	
+        }
+
+        &:nth-of-type(2) {
+            top: 50%;
+        }
+
+        &:nth-of-type(3) {
+            top: calc(50% + 5px);
+        }
+    }
+
+    &.active {
+        @include pc {
+            right: calc(40% - 0.9px);
+            border-radius: 50% 0 0 50%;
+        }
+        & span {
+            &:nth-of-type(1), &:nth-of-type(3) {
+                top: 50%;
+                right: 50%;
+                left: 6px;
+            }
+            &:nth-of-type(1) {
+                transform: translate(50%, -50%) rotate(45deg);
+            }
+
+            &:nth-of-type(2) {
+                opacity: 0;
+            }
+
+            &:nth-of-type(3){
+                transform: translate(50%, -50%) rotate(-45deg);
+            }
+        }
+    }
+}
+
+
+#hamburgerMenu{
+    /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
+    position:fixed;
+    z-index: 9999;
+    /*ナビのスタート位置と形状*/
+	top:0;
+    right: -120%;
+	width:100%;
+    height: 100vh;/*ナビの高さ*/
+    background: rgba(255, 255, 255, 0.90);
+    transition: all 0.6s;
+
+    @include pc {
+        width: 40%;
+    }
+
+    /*アクティブクラスがついたら位置を0に*/
+    &.active{
+        right: 0;
+
+        /*ナビゲーションの縦スクロール*/
+        & #hamburgerMenuList{
+            /*ナビの数が増えた場合縦スクロール*/
+            position: fixed;
+            z-index: 999; 
+            width: 100%;
+            height: 100vh;/*表示する高さ*/
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+
+            @include pc {
+                width: 40%;
+            }
+        }
+    }
+
+    & ul {
+        & li {
+            list-style: none;
+            text-align: center;
+            margin-bottom: 18px;
+            
+            & a {
+                color: $colorText;
+                text-decoration: none;
+                display: block;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                font-weight: $fontWeightMain;    
+                @include rem(16);        
+            }
+        }
+    }
+}
+
+.hamburgerMenu {
+    &__contents {
+        position: absolute;
+        top: 40%;
+        left: 0%;
+        transform: translate(0%,-50%);
+
+        & .mainTtl {
+            display: inline-block;
+            margin-bottom: 40px;
+            h1 {
+                @include rem(28);
+            }
+        }
+    }
+    &__image {
+        & figure {
+            text-align: center;
+            & img {
+                width: 30%;
+            }
+        }
+    }
+}
+
+
+#hamburgerCover {
+    &.active {
+        position: fixed;
+	    width: 100%;
+	    height: 100%;
+	    top: 0;
+    	left: 0;
+	    z-index: 9997;
+	    background: rgba(3,3,3,.5);
+	    display: block;
+    }
+}
+
+
+
+
+// --------------------------------------------
+// メインエリア
+// --------------------------------------------
+
+
+
+// --------------------------------------------
+// メインコンテンツ
+// --------------------------------------------
+section {
+    &.bg-on {
+        background-color: $colorBackground;
+    }
+}
+.section {
+    // セクションタイトル
+    &__ttl {
+        @include rem(32);
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 90px;
+    }
+
+    // セクション間の画像
+    &__img {
+        position: relative;
+        & img {
+            position: absolute;
+            width: 50%;
+        }
+    }
+}
+
+
+// この農園について
+#About {
+    background-color: $colorBackground;
+    padding: 35px 0 0 0;
+    @include pc {
+        padding: 101px 0 180px 0;
+        position: relative;
+    }
+
+    & .section__ttl {
+        color: #f57c00;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.90);
+        padding: 9px 10px;
+        margin-bottom: 30px;
+        line-height: 2;
+        @include rem(24);
+
+        @include pc {
+            display: inline-block;
+            text-align: start;
+            position: relative;
+            z-index: 99;
+            line-height: 1;
+            @include rem(40);
+        }
+    }
+
+    & .about {
+        &__txt {
+            color: #666;
+            font-weight: $fontWeightMain;
+            max-width: 560px;
+            background: rgba(255, 255, 255, 0.90);
+            line-height: 250%; 
+            padding: 15px;
+            margin-bottom: 30px;
+            @include rem(16);
+    
+            @include pc{
+                position: relative;
+                z-index: 99;
+            }
+        }
+    
+        &__img--wrapper {
+            @include pc {
+                position: absolute;
+                top: 50px;
+                right: 80px;
+            }
+        }
+
+        &__img {
+            text-align: end;
+            width: 100%;
+    
+            & > img {
+                width: 80%;
+                border-radius: 30px;
+            }
+    
+            &.upper {
+                margin-bottom: 38px;
+                @include pc {
+                    margin-bottom: 70px;
+                }
+            }
+    
+            &.lower {
+                & > img {
+                    width: 50%;
+                    @include pc {
+                        width: 30%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+// 製品一覧
+#Product {
+    padding: 126px 0 100px 0;
+
+    & .wrapper {
+        max-width: none;
+        width: 100%;
+    }
+}
+
+.product {
+    &__list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &--item {
+            background-color: $colorWhite;
+            height: 331px;
+            box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+            display: flex;
+            flex-direction: column;
+            
+        }    
+    }
+
+    &__img {
+        & > img {
+            width: 100%;
+        }
+    }
+
+    &__ttl {
+        line-height: 150%;
+        padding: 16px 16px 0 16px;
+        font-weight: $fontWeightMain;
+    }
+
+    &__price {
+        margin-top: auto;
+        padding: 0 0 16px 16px;
+    }
+}
+
+.swiper {
+    &-wrapper {
+        padding-bottom: 10px;
+    }
+
+    &-slide {
+        box-sizing: border-box;
+    }
+}
+
+
+
+// お知らせ
+#News {
+    padding: 91px 0;
+
+    & .section__img {
+        & img {
+            max-width: 235px; 
+            right: 0px;
+            top: 12px;
+        }
+    }
+}
+
+.news {
+    &__list {
+        margin-top: 90px;
+
+        &--item {
+            padding: 22px 0;
+            border-bottom: 1px solid $colorBorder;
+
+            &:nth-child(1) {
+                border-top: 1px solid $colorBorder;
+            }
+        }
+    }
+
+    &__date {
+        margin-bottom: 10px;
+        display: block;
+        color: #403F3F;
+        @include rem(12);
+
+        @include pc {
+            margin-right: 120px;
+            margin-bottom: 0px;
+            display: inline-block;
+            @include rem(13);
+        }
+    }
+
+    &__ttl {
+        display: block;
+        @include rem(14);
+
+        @include pc {
+            display: inline-block;
+            @include rem(16);
+        }
+    }
+}
+
+
+
+// FAQ
+#Faq {
+    padding: 91px 0;
+
+    & .section__img {
+        & img {
+            max-width: 349px; 
+            left: 0px;
+            top: 32px;
+        }
+    }
+}
+
+.faq {
+    &__list {
+        max-width: 740px;
+        margin: 0 auto;
+    
+        &--item {
+            margin-bottom: 31px;
+
+            &:nth-child(1) {
+                & details[open] {
+                    height: 100px;
+                }
+            }
+            &:nth-child(3),
+            &:nth-child(4),
+            &:nth-child(5) {
+                & details[open] {
+                    height: 120px;
+                }
+            }
+
+            &:nth-last-child(1) {
+                margin-bottom: 0px;
+            }
+
+            & details {
+                height: 50px;
+                transition: 0.5s;
+
+                &[open] {
+                    height: 210px;
+                    & summary {
+                        &::after {
+                            transform: rotate(225deg);
+                            top: 18px;
+                        }
+                    }
+                }
+
+                & p {
+                    line-height: 150%;
+                }
+            }
+
+            & summary {
+                display: flex;
+                justify-content: flex-start;
+                list-style: none;
+                background-color: $colorWhite;
+                padding: 16px 50px 12px 55px;
+                margin-bottom: 24px;
+                height: 68px;
+                @include rem(16);
+                font-weight: $fontWeightMain;
+                position: relative;
+                align-items: center;
+
+                @include pc {
+                    @include rem(18);
+                    padding: 16px 0px 12px 55px;
+                    height: 50px;
+                }
+
+                &::-webkit-details-marker {
+                    display:none;
+                }
+
+                &::before {
+                    position: absolute;
+                    content: "Q";
+                    top: 22px;
+                    left: 24px;
+                    @include rem(24);
+                    @include pc {
+                        top: 14px;
+                    }
+                }
+
+                &::after {
+                    position: absolute;
+                    content: "";
+                    border-bottom: 4px solid $colorBorder;
+                    border-right: 4px solid $colorBorder;
+                    width: 16px;
+                    height: 16px;
+                    transform: rotate(45deg);
+                    top: 22px;
+                    right: 24px;
+                    transition: all 0.5s;
+                    @include pc {
+                        top: 14px;
+                    }
+                }
+            }
+
+            & p {
+                @include rem(14);
+                @include pc {
+                    @include rem(18);
+                }
+            }
+        }
+    }
+}
+
+
+
+// アクセス
+#Access {
+    padding: 91px 0 78px;
+
+    .section__contents {
+        @include pc {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    & .section__img {
+        & img {
+            max-width: 264px; 
+            right: 0px;
+            top: 0px;
+        }
+    }
+}
+
+.accessInfo {
+    margin-bottom: 30px;
+
+    @include pc {
+        width: 49%;
+        margin-bottom: 0px;
+    }
+    
+    &__row {
+        display: flex;
+        border-bottom: 1px solid $colorBorder;
+        padding: 21px 0 20px;
+        font-weight: $fontWeightMain;
+
+        &:nth-of-type(1) {
+            border-top: 1px solid $colorBorder;
+        }
+
+        &__ttl {
+            width: 120px;
+
+            @include pc {
+                width: 174px;
+            }
+        }
+    }
+}
+
+.map {
+    width: 100%;
+    max-width: 351px;
+    @include pc {
+        max-width: 443px;
+    }
+}
+
+
+
+// お問い合わせ
+#Contact {
+    padding: 104px 0 30px;
+
+    & .section__ttl {
+        margin-bottom: 67px;
+    }
+
+    & .description {
+        font-weight: $fontWeightMain;
+        text-align: center;
+        margin-bottom: 33px;
+        @include rem(18);
+        @include pc {
+            margin-bottom: 93px;
+        }
+    }
+
+    & .end-message,
+    & .false-message {
+        display: none;
+    }
+
+    & .end-message {
+        text-align: center;
+        color: #7cb6ec;
+    }
+}
+
+form {
+    & input,
+    & textarea {
+        &[type="radio"] {
+            border: $colorText 2px solid;
+            accent-color: $colorText;
+            appearance: revert;
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    & input[type="text"],
+    & input[type="mail"],
+    & textarea {
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        background: #EFEAE6;
+        @include pc {
+            max-width: 334px;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    & input[type="text"][id="zip"] {
+        @include pc {
+            max-width: 157px;
+        }
+    }
+
+    & input[type="text"],
+    & input[type="mail"] {
+        height: 40px;
+        padding: 0 10px;
+    }
+
+    & textarea {
+        resize: none;
+        height: 170px;
+        padding: 10px;
+    }
+
+    & input[type="submit"] {
+        font-weight: $fontWeightMain;
+        border-radius: 10px;
+        background: #5a8b5c;
+        color: $colorWhite;
+        padding: 13px 94px;
+        text-align: center;
+        width: 100%;
+        @include pc {
+            max-width: 243px;
+        }
+    }
+}
+
+.form {
+    &__wrapper {
+        border-radius: 20px;
+        background: #FFF;
+        padding: 37px 20px 43px 20px;
+        @include pc {
+            padding: 37px 76px 43px 76px;
+        }
+    }
+
+    &__ttl {
+        margin-bottom: 41px;
+        font-weight: $fontWeightMain;
+        text-align: center;
+        @include pc {
+            @include rem(18);
+        }
+    }
+
+    &__elm {
+        @include pc {
+            display: flex;
+        }
+        margin-bottom: 24px;
+
+        &--container {
+            &:nth-child(1) {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 8px;
+                @include pc {
+                    width: 45%;
+                    margin-bottom: 0px;
+                }
+            }
+
+            &:nth-child(2) {
+                @include pc {
+                    width: 50%;
+                }
+            }
+        }
+
+        &--label {
+            font-weight: $fontWeightMain;
+        }
+
+        &--child {
+            margin-bottom: 10px;
+
+            &:nth-last-child(1) {
+                margin-bottom: 0px;
+            }
+        }
+
+        &.submit {
+            margin-top: 50px;
+            text-align: center;
+            justify-content: center;
+        }
+    }
+}
+.required {
+    margin-top: -5px;
+    margin-left: 18px;
+    font-weight: $fontWeightMain;
+    border-radius: 10px;
+    background: #5a8b5c;
+    padding: 5px 11px;
+    max-height: 30px;
+    color: $colorWhite;
+}
+
+
+
+// --------------------------------------------
+// フッター
+// --------------------------------------------
+.footer {
+
+    & .mainTtl {
+        display: inline-block;
+    }
+
+    &Image {
+        margin-top: 24px;
+
+        & > img {
+            display: block;
+            margin: 0 auto;
+
+            &:nth-child(1) {
+                max-width: 96px;
+            }
+            &:nth-child(2) {
+                max-width: 300px;
+            }
+        }
+    }
+
+    &Menu {
+        @include pc {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__wrapper {
+            margin-top: 33px;
+            margin-bottom: 97px;
+
+            &.wrapper {
+                max-width: 568px;
+            }
+        }
+
+        &__item {
+            font-weight: $fontWeightMain;
+            text-align: center;
+            margin-bottom: 15px;
+            @include pc {
+                text-align: start;
+                margin-bottom: 0px;
+            }
+        }
+
+    }
+
+    & .section__img {
+        &.footer__img {
+            & img {
+                width: 70%;
+            }
+
+            &--1 {
+                & > img {
+                    max-width: 297px;
+                    top: -167px;
+                    left: 0px;
+                }
+            }
+
+            &--2 {
+                & > img {
+                    max-width: 237px;
+                    top: -162px;
+                    right: 0px;
+                }
+            }
+        }
+    }
+
+    &Copyright {
+        padding: 21px 0 22px 0;
+        background-color: #D9D9D9;
+    }
+}
+
+@media screen and (max-width: 1020px) {
+    .footer {
+        &Menu__wrapper {
+            margin-bottom: 33px;
+        }
+        & .section__img {
+            position: static;
+
+            & > img {
+                position: static;
+                width: auto;
+            }
+
+            &--wrapper {
+                display: flex;
+                justify-content: space-between;
+            }
+            &.footer__img {
+                &--1 {
+                    // max-
+                }
+                &--2 {
+                    & > img {
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 586px) {
+    .footer {
+        & .section__img {
+            width: 50%;
+
+            & > img {
+                width: 100%;
+                height: 100%;
+            }
+
+            &.footer__img {
+                &--1,
+                &--2 {
+                    & > img {
+                        max-width: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.copyright {
+    text-align: center;
+}
+
+
+
+// --------------------------------------------
+// スライダー
+// --------------------------------------------
+.slider {
+    &-slide {
+        width: 100%;
+    }
+    &__img {
+        height: auto;
+        width: 100%;
+    }
+}
+
+
+
+// --------------------------------------------
+// ローディング
+// --------------------------------------------
+#loading {
+    width: 100vw;
+    height: 100vh;
+    transition: all 1s;
+    background-color: #388e3c;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+.spinner {
+    width: 100px;
+    height: 100px;
+    margin: 200px auto;
+    background-color: #fff;
+    border-radius: 100%;
+    animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+@keyframes sk-scaleout {
+    0% {
+        transform: scale(0);
+    } 100% {
+        transform: scale(1.0);
+        opacity: 0;
+    }
+}
+.loaded {
+    opacity: 0;
+    visibility: hidden;
+}

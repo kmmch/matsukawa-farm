@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "destyle.css": "^4.0.0"
+  },
+  "dependencies": {
+    "jquery": "^3.7.0",
+    "swiper": "^10.2.0"
+  }
+}
