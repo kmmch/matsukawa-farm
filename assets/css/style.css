@@ -535,10 +535,20 @@ section.bg-on {
   margin-bottom: 31px;
 }
 .faq__list--item:nth-child(1) details[open] {
-  height: 100px;
+  height: 135px;
+}
+@media screen and (min-width: 769px) {
+  .faq__list--item:nth-child(1) details[open] {
+    height: 100px;
+  }
 }
 .faq__list--item:nth-child(3) details[open], .faq__list--item:nth-child(4) details[open], .faq__list--item:nth-child(5) details[open] {
-  height: 120px;
+  height: 140px;
+}
+@media screen and (min-width: 769px) {
+  .faq__list--item:nth-child(3) details[open], .faq__list--item:nth-child(4) details[open], .faq__list--item:nth-child(5) details[open] {
+    height: 120px;
+  }
 }
 .faq__list--item:nth-last-child(1) {
   margin-bottom: 0px;
@@ -548,7 +558,12 @@ section.bg-on {
   transition: 0.5s;
 }
 .faq__list--item details[open] {
-  height: 210px;
+  height: 255px;
+}
+@media screen and (min-width: 769px) {
+  .faq__list--item details[open] {
+    height: 210px;
+  }
 }
 .faq__list--item details[open] summary::after {
   transform: rotate(225deg);
@@ -657,12 +672,15 @@ section.bg-on {
   border-top: 1px solid #C6C6C6;
 }
 .accessInfo__row__ttl {
-  width: 120px;
+  width: 40%;
 }
 @media screen and (min-width: 769px) {
   .accessInfo__row__ttl {
     width: 174px;
   }
+}
+.accessInfo__row__val {
+  width: 60%;
 }
 
 .map {

@@ -618,14 +618,20 @@ section {
 
             &:nth-child(1) {
                 & details[open] {
-                    height: 100px;
+                    height: 135px;
+                    @include pc {
+                        height: 100px;
+                    }
                 }
             }
             &:nth-child(3),
             &:nth-child(4),
             &:nth-child(5) {
                 & details[open] {
-                    height: 120px;
+                    height: 140px;
+                    @include pc {
+                        height: 120px;
+                    }
                 }
             }
 
@@ -638,7 +644,10 @@ section {
                 transition: 0.5s;
 
                 &[open] {
-                    height: 210px;
+                    height: 255px;
+                    @include pc {
+                        height: 210px;
+                    }
                     & summary {
                         &::after {
                             transform: rotate(225deg);
@@ -754,11 +763,15 @@ section {
         }
 
         &__ttl {
-            width: 120px;
+            width: 40%;
 
             @include pc {
                 width: 174px;
             }
+        }
+
+        &__val {
+            width: 60%;
         }
     }
 }
